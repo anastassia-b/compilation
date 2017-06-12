@@ -2,7 +2,7 @@ require_relative 'p05_hash_map'
 require_relative 'p04_linked_list'
 
 class LRUCache
-  attr_reader :count
+
   def initialize(max, prc)
     @map = HashMap.new
     @store = LinkedList.new
@@ -15,7 +15,11 @@ class LRUCache
   end
 
   def get(key)
-    unless @map.include?(key)
+    if map[key]
+      link = map[key]
+      update_link!(link)
+      link.val
+    else
       calc!(key)
     end
 
@@ -26,15 +30,15 @@ class LRUCache
   end
 
   private
-
+  attr_reader :store, :map
   def calc!(key)
     @map.set(key, @store.append(key, @prc.call(key)))
     eject! if count == @max
   end
 
   def update_link!(link)
-
-
+    link.remove
+    store.append(link.key, link.val))
   end
 
   def eject!
