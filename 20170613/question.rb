@@ -1,3 +1,5 @@
+require_relative 'questions'
+
 class Question
   attr_accessor :title, :body, :author
 
@@ -5,6 +7,11 @@ class Question
     @title = options['title']
     @body = options['body']
     @author = options['author']
+  end
+
+  def self.all
+    data = QuestionsDatabase.instance.execute("SELECT * FROM questions")
+    data.map { |datum| Question.new(datum) }
   end
 
   def self.find_by_id(id)
@@ -19,5 +26,9 @@ class Question
     return nil unless question.length > 0
 
     Question.new(question.first)
+  end
+
+  def self.find_by_author_id(author_id)
+
   end
 end
