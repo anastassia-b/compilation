@@ -7,7 +7,7 @@ class Board {
 
   isEmptyPos(pos) {
     if (!Board.isValidPos(pos)) {
-      throw new MoveError('Not a valid position!');
+      throw new MoveError('Is not valid position!');
     }
 
     return (this.grid[pos[0]][pos[1]] === null);
@@ -25,28 +25,31 @@ class Board {
         }
       }
     }
+
     return true;
   }
 
   placeMark(pos, mark) {
     if (!this.isEmptyPos(pos)) {
-      throw new MoveError('Not an empty position! Pick another.');
+      throw new MoveError('Is not an empty position!');
     }
+
     this.grid[pos[0]][pos[1]] = mark;
   }
 
   print() {
-    const view = [];
-    for (let rowIdx = 0, rowIdx < 3; rowIdx++) {
+    const strs = [];
+    for (let rowIdx = 0; rowIdx < 3; rowIdx++) {
       const marks = [];
       for (let colIdx = 0; colIdx < 3; colIdx++) {
         marks.push(
           this.grid[rowIdx][colIdx] ? this.grid[rowIdx][colIdx] : " "
         );
       }
-      view.push(`${marks.join('|')}\n`);
+      strs.push(`${marks.join('|')}\n`);
     }
-    console.log(view.join('------\n'));
+
+    console.log(strs.join('-----\n'));
   }
 
   winner() {
@@ -91,11 +94,15 @@ class Board {
         return targetMark;
       }
     }
+
     return null;
   }
 
   static isValidPos(pos) {
-    return (pos[0] >= 0) && (pos[0] <= 3) && (pos[1] >= 0) && (pos[1] <= 3);
+    return (0 <= pos[0]) &&
+    (pos[0] < 3) &&
+    (0 <= pos[1]) &&
+    (pos[1] < 3);
   }
 
   static makeGrid() {
@@ -104,7 +111,7 @@ class Board {
     for (let i = 0; i < 3; i++) {
       grid.push([]);
       for (let j = 0; j < 3; j++) {
-        grid.push(null);
+        grid[i].push(null);
       }
     }
 
@@ -113,4 +120,5 @@ class Board {
 }
 
 Board.marks = ['x', 'o'];
+
 module.exports = Board;
