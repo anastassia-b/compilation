@@ -72,3 +72,19 @@ li:hover {
 .o:after {
   content: "o";
 }
+
+.game-over li {
+  color: red;
+  cursor: default;
+  background: white;
+}
+
+.winner-x .x,
+.winner-o .o {
+  background: blue;
+  color: white;
+}
+
+figcaption {
+  font-size: 30px;
+}
