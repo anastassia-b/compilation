@@ -31,6 +31,13 @@ button:hover {
 	border-color: $darkest-blue;
 }
 
+a:hover {
+	text-decoration: underline;
+}
+
+.hidden {
+	display: none;
+}
 /*
 	Header Rules
 */
