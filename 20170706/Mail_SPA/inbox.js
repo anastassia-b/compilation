@@ -16,7 +16,7 @@ module.exports = {
     container.className = "messages";
     let messages = MessageStore.getInboxMessages();
     messages.forEach(message => {
-      container.appendChild(this.renderMessage);
+      container.appendChild(this.renderMessage(message));
     });
     return container;
   }
