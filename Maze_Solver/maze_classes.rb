@@ -1,7 +1,7 @@
 module MazeClasses
 
   class Maze
-    DELTAS = [[-1, 0], [0, 1], [-1, 0], [0, -1]]
+    DELTAS = [[1, 0], [0, 1], [-1, 0], [0, -1]]
 
     attr_reader :start_ind, :end_ind
 
@@ -23,7 +23,7 @@ module MazeClasses
 
     def is_wall?(point)
       x, y = point
-      @map[y][x]
+      @map[y][x] == "*"
     end
 
     def in_maze?(point)
@@ -162,11 +162,19 @@ module MazeClasses
     end
 
     def find_path(goal = @maze.find_end)
-
+      path = [goal]
+      spot = goal
+      until @branching_paths[spot] == nil
+        path << @branching_paths[spot]
+        spot = @branching_paths[spot]
+      end
+      path
     end
 
     def solve(heuristic = :manhattan_heuristic)
-
+      building_branching_paths(heuristic)
+      path = find_path
+      @maze.travel_path(path)
     end
 
     private
@@ -186,5 +194,5 @@ if __FILE__ == $PROGRAM_NAME
   puts "Start is at #{test_maze.start_ind}"
   puts "End is at #{test_maze.end_ind}"
   test_solver = MazeClasses::Maze_Solver.new(test_maze)
-  # test_solver.solve
+  test_solver.solve
 end
