@@ -3,7 +3,7 @@ module MazeClasses
   class Maze
     DELTAS = [[-1, 0], [0, 1], [-1, 0], [0, -1]]
 
-    attr_reader :start_ind, :end_ind
+    attr_reader :start_ind, :end_ind, :map
 
     def initialize(filename)
       @map = load_map(filename)
@@ -22,11 +22,15 @@ module MazeClasses
     end
 
     def is_wall?(point)
-
+      x, y = point
+      @map[y][x]
     end
 
     def in_maze?(point)
-
+      x, y = point
+      not_negative = (x >= 0) && (y >= 0)
+      within_bounds = (x <= @map[0].length) && (y <= @map.length)
+      not_negative && within_bounds
     end
 
     def parse_title(filename)
@@ -34,7 +38,11 @@ module MazeClasses
     end
 
     def to_s
-
+      string = "MAZE: #{@title}\n"
+      @map.each do |line|
+        string << line.join("")
+      end
+      string
     end
 
     def find_start
@@ -52,21 +60,53 @@ module MazeClasses
     end
 
     def find_neighbors(point)
-
+      x, y = point
+      neighbors = []
+      DELTAS.each do |d_x, d_y|
+        neighbor = [(d_x + x), (d_y + y)]
+        if in_maze?(neighbor) && !(is_wall?(neighbor))
+          neighbors << neighbor
+        end
+      end
+      neighbors
     end
 
     def travel_path(path)
+      puts "Traveling path of #{path.inspect}..."
+      copy_map = deep_dup(@map)
+      path.each do |coords|
+        x, y = coords
+        point = copy_map[y][x]
+        if point == "X"
+          puts "This path back-tracks to #{x}, #{y}."
+        elsif point == "*"
+          puts "This path hits a wall at #{x}, #{y}."
+        else
+          copy_map[y][x] = "X"
+        end
+      end
 
+      show_path(copy_map)
     end
 
     def show_path(map)
-
+      map.each do |line|
+        puts line.join("")
+      end
     end
 
     private
 
     def deep_dup(item)
-
+      unless item.class == Array
+        item.dup
+      else
+        new_arr = []
+        item.each do |item|
+          new_arr << deep_dup(item)
+        end
+        new_arr
+      end
     end
 
   end
