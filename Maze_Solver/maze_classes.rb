@@ -3,7 +3,7 @@ module MazeClasses
   class Maze
     DELTAS = [[-1, 0], [0, 1], [-1, 0], [0, -1]]
 
-    attr_reader :start_ind, :end_ind, :map
+    attr_reader :start_ind, :end_ind
 
     def initialize(filename)
       @map = load_map(filename)
@@ -111,6 +111,72 @@ module MazeClasses
 
   end
 
+  class Maze_Solver
+
+    def initialize(maze)
+      @maze = maze
+      reset_values
+    end
+
+    def find_distance(point)
+      p_x, p_y = point
+      final_x, final_y = @maze.find_end
+      ((p_x - final_x) + (p_y - final_y)).abs
+    end
+
+    def find_manhattan_estimate(point)
+      dist_to_end = find_distance(point)
+      dist_traveled = find_path(point).length
+      f = dist_to_end + dist_traveled
+    end
+
+    def manhattan_heuristic(queue)
+      queue.inject do |chosen_point, point|
+        old_f = find_manhattan_estimate(chosen_point)
+        new_f = find_manhattan_estimate(point)
+        old_f > new_f ? point : chosen_point
+      end
+    end
+
+    #Could add breadth-first-search to compare
+    def building_branching_paths(heuristic = :manhattan_heuristic)
+      reset_values
+      queue = [@current]
+      visited = [@current]
+
+      until queue.empty? || @current == @maze.find_end
+        @current = self.send(heuristic, queue)
+        queue.delete(@current)
+        visited << @current
+
+        nearby_openings = @maze.find_neighbors(@current)
+
+        nearby_openings.each do |neighbor|
+          unless visited.include?(neighbor) || queue.include?(neighbor)
+            queue << neighbor
+            @branching_paths[neighbor] = @current
+          end
+        end
+      end
+      @branching_paths
+    end
+
+    def find_path(goal = @maze.find_end)
+
+    end
+
+    def solve(heuristic = :manhattan_heuristic)
+
+    end
+
+    private
+
+    def reset_values
+      @branching_paths = {}
+      @current = @maze.find_start
+    end
+  end
+
 end
 
 if __FILE__ == $PROGRAM_NAME
@@ -119,4 +185,6 @@ if __FILE__ == $PROGRAM_NAME
   puts test_maze
   puts "Start is at #{test_maze.start_ind}"
   puts "End is at #{test_maze.end_ind}"
+  test_solver = MazeClasses::Maze_Solver.new(test_maze)
+  # test_solver.solve
 end
