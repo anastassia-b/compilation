@@ -1,7 +1,11 @@
 require_relative 'tic_tac_toe'
 
 class TicTacToeNode
+  attr_reader :board, :next_mover_mark, :prev_move_pos
+
   def initialize(board, next_mover_mark, prev_move_pos = nil)
+    @board, @next_mover_mark, @prev_move_pos =
+      board, next_mover_mark, prev_move_pos
   end
 
   def losing_node?(evaluator)
