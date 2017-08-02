@@ -11,6 +11,11 @@ class WordChainer
   def run(source, target)
     @current_words, @all_seen_words = [source], { source => nil }
 
+    until @current_words.empty? || @all_seen_words.include?(target)
+      explore_current_words
+    end
+
+    build_path(target)
   end
 
   def adjacent_words(word)
@@ -44,12 +49,18 @@ class WordChainer
   end
 
   def build_path(target)
+    path = []
+    current_word = target
+    until current_word.nil?
+      path << current_word
+      current_word = @all_seen_words[current_word]
+    end
 
+    path.reverse
   end
 end
 
 
 if __FILE__ == $PROGRAM_NAME
-  # p WordChainer.new(ARGV.shift).run("duck", "ruby")
-  p WordChainer.new(ARGV.shift)
+  p WordChainer.new(ARGV.shift).run("duck", "ruby")
 end
