@@ -48,5 +48,7 @@ class TicTacToeNode
         next_mover_mark = (self.next_mover_mark == :x ? :o : :x)
 
         children << TicTacToeNode.new(new_board, next_mover_mark, pos)
+      end
+    end
   end
 end
