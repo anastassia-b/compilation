@@ -9,6 +9,7 @@ class WordChainer
   end
 
   def run(source, target)
+    @current_words, @all_seen_words = [source], { source => nil }
 
   end
 
@@ -29,7 +30,17 @@ class WordChainer
   end
 
   def explore_current_words
+    new_current_words = []
+    @current_words.each do |current_word|
+      adjacent_words(current_word).each do |adjacent_word|
+        next if @all_seen_words.has_key?(adjacent_word)
 
+        new_current_words << adjacent_word
+        @all_seen_words[adjacent_word] = current_word
+      end
+    end
+
+    @current_words = new_current_words
   end
 
   def build_path(target)
