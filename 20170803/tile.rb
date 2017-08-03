@@ -33,4 +33,32 @@ class Tile
     neighbors.select(&:bombed?).count
   end
 
+  def explore
+
+  end
+
+  def inspect
+
+  end
+
+  def neighbors
+
+  end
+
+  def plant_bomb
+
+  end
+
+  def render
+
+  end
+
+  def reveal
+
+  end
+
+  def toggle_flag
+
+  end
+
 end
