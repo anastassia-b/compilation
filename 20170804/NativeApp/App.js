@@ -10,8 +10,17 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Hello World!</Text>
+        <Greeting name='Anastassia' />
         <Image source={pic} style={{width: 193, height: 110}}/>
       </View>
+    );
+  }
+}
+
+class Greeting extends React.Component {
+  render() {
+    return (
+      <Text>Hi {this.props.name}!</Text>
     );
   }
 }
