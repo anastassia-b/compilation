@@ -9,9 +9,10 @@ export default class App extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text>Hello World!</Text>
+        <Text style={styles.bigred}>Hello World!</Text>
         <Greeting name='Anastassia' />
         <Image source={pic} style={{width: 193, height: 110}}/>
+        <Blink text="This text, it's blinking" />
       </View>
     );
   }
@@ -20,7 +21,28 @@ export default class App extends React.Component {
 class Greeting extends React.Component {
   render() {
     return (
-      <Text>Hi {this.props.name}!</Text>
+      <Text style={styles.blue}>Hi {this.props.name}!</Text>
+    );
+  }
+}
+
+class Blink extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {showText: true};
+
+    //Toggle state every 2 seconds
+    setInterval(() => {
+      this.setState(previousState => {
+        return { showText: !previousState.showText };
+      });
+    }, 2000);
+  }
+
+  render() {
+    let display = this.state.showText ? this.props.text : ' ';
+    return (
+      <Text>{display}</Text>
     );
   }
 }
@@ -32,4 +54,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  bigred: {
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+  blue: {
+    color: 'blue'
+  }
 });
