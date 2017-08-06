@@ -13,6 +13,7 @@ export default class App extends React.Component {
         <Greeting name='Anastassia' />
         <Image source={pic} style={{width: 193, height: 110}}/>
         <Blink text="This text, it's blinking" />
+        <TextInANest/>
       </View>
     );
   }
@@ -47,6 +48,27 @@ class Blink extends React.Component {
   }
 }
 
+class TextInANest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      titleText: "Bird's Next",
+      bodyText: 'This is the beginning of a story.'
+    };
+  }
+
+  render() {
+    return (
+      <Text style={styles.baseText}>
+        <Text style={styles.titleText}>
+          {this.state.titleText}{'\n'}{'\n'}
+        </Text>
+        <Text>{this.state.bodyText}</Text>
+      </Text>
+    );
+  }
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -61,5 +83,12 @@ const styles = StyleSheet.create({
   },
   blue: {
     color: 'blue'
-  }
+  },
+  baseText: {
+    fontFamily: 'Cochin',
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
 });
