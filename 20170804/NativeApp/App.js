@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, Alert, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, Alert, ScrollView, FlatList, SectionList } from 'react-native';
 
 export default class App extends React.Component {
   render() {
@@ -21,7 +21,26 @@ export default class App extends React.Component {
     // );
 
     return (
-      <BasicFlatList/>
+      <BasicSectionList/>
+    );
+  }
+}
+
+class BasicSectionList extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <SectionList
+          sections={[
+            {title: 'A', data: ['Anastassia', 'Alex']},
+            {title: 'D', data: ['David', 'Devin', 'Dallas']},
+            {title: 'J', data: ['JULES', 'Julia', 'JuliaGuo']},
+          ]}
+          renderItem={({item}) => <Text style={styles.item}>{item}</Text>}
+          renderSectionHeader={({section}) => <Text style={styles
+            .sectionHeader}>{section.title}</Text>}
+          />
+      </View>
     );
   }
 }
