@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, Alert, ScrollView } from 'react-native';
 
 export default class App extends React.Component {
   render() {
@@ -12,15 +12,34 @@ export default class App extends React.Component {
     //     <TextTranslator/>
     //     <Text style={styles.bigred}>Hello World!</Text>
     //     <Greeting name='Anastassia' />
-    //     <Image source={pic} style={{width: 193, height: 110}}/>
+    //     <Image source={pic} style={{width: 200, height: 120}}/>
     //     <Blink text="This text, it's blinking" />
     //     <TextInANest/>
+    //     <ButtonBasics/>
     //   </View>
     // );
 
     return (
-      <ButtonBasics/>
+      <Scrolling/>
     );
+  }
+}
+
+class Scrolling extends React.Component {
+  render() {
+    let pic = {
+      uri: 'http://livelovefruit.com/wp-content/uploads/2015/06/Benefits-of-eating-fruit-forbreakfast.jpg'
+    };
+
+    return (
+      <ScrollView>
+        <Text>Scroll Down!</Text>
+        <Image source={pic} style={{width: 400, height: 400}}/>
+        <Text>Scroll Down!</Text>
+        <Image source={pic} style={{width: 400, height: 400}}/>
+        <Text>End of the page</Text>
+      </ScrollView>
+    )
   }
 }
 
