@@ -7,15 +7,18 @@ export default class App extends React.Component {
       uri: 'http://livelovefruit.com/wp-content/uploads/2015/06/Benefits-of-eating-fruit-forbreakfast.jpg'
     };
 
+    // return (
+    //   <View style={styles.container}>
+    //     <Text style={styles.bigred}>Hello World!</Text>
+    //     <Greeting name='Anastassia' />
+    //     <Image source={pic} style={{width: 193, height: 110}}/>
+    //     <Blink text="This text, it's blinking" />
+    //     <TextInANest/>
+    //   </View>
+    // );
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.bigred}>Hello World!</Text>
-        <Greeting name='Anastassia' />
-        <Image source={pic} style={{width: 193, height: 110}}/>
-        <Blink text="This text, it's blinking" />
-        <TextInANest/>
-        <Dimensions/>
-      </View>
+      <Dimensions/>
     );
   }
 }
@@ -23,12 +26,17 @@ export default class App extends React.Component {
 class Dimensions extends React.Component {
   render() {
     return (
-      <View>
+      <View style={{
+          flex: 1,
+          flexDirection: 'row', //primary axis (column default)
+          justifyContent: 'space-between', //along primary axis
+          alignItems: 'center' //along secondary axis
+        }}>
         <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
-        <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} />
-        <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
+        <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
       </View>
-    )
+    );
   }
 }
 
