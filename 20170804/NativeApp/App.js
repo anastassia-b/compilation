@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, Alert } from 'react-native';
 
 export default class App extends React.Component {
   render() {
@@ -9,6 +9,7 @@ export default class App extends React.Component {
 
     // return (
     //   <View style={styles.container}>
+    //     <TextTranslator/>
     //     <Text style={styles.bigred}>Hello World!</Text>
     //     <Greeting name='Anastassia' />
     //     <Image source={pic} style={{width: 193, height: 110}}/>
@@ -18,10 +19,42 @@ export default class App extends React.Component {
     // );
 
     return (
-      <TextTranslator/>
+      <ButtonBasics/>
     );
   }
 }
+
+class ButtonBasics extends React.Component {
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Press Me"
+          />
+        </View>
+        <View style={styles.alternativeButtonContainer}>
+          <Button
+            onPress={this._onPressButton}
+            title="Looking good"
+            color="#841584"
+          />
+          <Button
+            onPress={this._onPressButton}
+            title="Ok!"
+            color="#841584"
+          />
+        </View>
+      </View>
+    )
+  }
+}
+
 
 class TextTranslator extends React.Component {
   constructor(props) {
@@ -134,4 +167,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  buttonContainer: {
+    margin: 20
+  },
+  alternativeButtonContainer: {
+    margin: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  }
 });
