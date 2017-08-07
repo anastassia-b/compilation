@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, Alert, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, Alert, ScrollView, FlatList } from 'react-native';
 
 export default class App extends React.Component {
   render() {
@@ -16,11 +16,30 @@ export default class App extends React.Component {
     //     <Blink text="This text, it's blinking" />
     //     <TextInANest/>
     //     <ButtonBasics/>
+    //     <Scrolling/>
     //   </View>
     // );
 
     return (
-      <Scrolling/>
+      <BasicFlatList/>
+    );
+  }
+}
+
+
+class BasicFlatList extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={[
+            {key: 'David'},
+            {key: 'Anastassia'},
+            {key: 'Atom'}
+          ]}
+          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+        />
+      </View>
     );
   }
 }
@@ -166,6 +185,7 @@ class TextInANest extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 20,
     flex: 1,
     backgroundColor: 'pink',
     alignItems: 'center',
@@ -193,5 +213,19 @@ const styles = StyleSheet.create({
     margin: 20,
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44
+  },
+  sectionHeader: {
+    paddingTop: 2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 2,
+    fontSize: 14,
+    fontWeight: 'bold',
+    backgroundColor: 'rgba(247,247,247,1.0)',
   }
 });
