@@ -14,8 +14,21 @@ export default class App extends React.Component {
         <Image source={pic} style={{width: 193, height: 110}}/>
         <Blink text="This text, it's blinking" />
         <TextInANest/>
+        <Dimensions/>
       </View>
     );
+  }
+}
+
+class Dimensions extends React.Component {
+  render() {
+    return (
+      <View>
+        <View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} />
+        <View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} />
+        <View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} />
+      </View>
+    )
   }
 }
 
