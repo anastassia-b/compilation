@@ -1,19 +1,19 @@
 # Connect Four!
 
 ## Phase I: The Board
-Start by writing a `Board` class. This will handle the dropping of discs
+Start by writing a `Board` class. This will handle the dropping of disks
 as well as determining if the game is over.
 
 #### `initialize`
 The `initialize` method should create a 2D `grid` with 6 rows and 7
-columns. This will hold all of the discs as the game is played.
+columns. This will hold all of the disks as the game is played.
 
-#### `drop_disc`
-The method should receive a `column` index and a `disc`. The disc should
+#### `drop_disk`
+The method should receive a `column` index and a `disk`. The disk should
 _fall_ to the last empty row.
 
 #### `over?`
-The method will return true if any player has achieved four discs in
+The method will return true if any player has achieved four disks in
 a row.
 
 #### `winner`
@@ -29,9 +29,9 @@ Write a game class. It should create and store a `Board`.
 
 #### `run`
 When this method is called the game should start. The first player will
-be prompted for a column to drop their disc into. If that column is
+be prompted for a column to drop their disk into. If that column is
 full, the player should be prompted again. Once the player has
-successfully dropped their disc, the next player should be prompted.
+successfully dropped their disk, the next player should be prompted.
 
 This process should continue until a player has won.
 
