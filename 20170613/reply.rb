@@ -1,4 +1,4 @@
-require_relative 'questions'
+require_relative 'questions_db'
 
 class Reply
   attr_accessor :questions_id, :parent_reply, :user_id, :body

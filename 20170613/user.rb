@@ -1,4 +1,4 @@
-require_relative 'questions'
+require_relative 'questions_db'
 
 class User
   attr_accessor :fname, :lname
