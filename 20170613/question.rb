@@ -1,6 +1,7 @@
 require_relative 'questions_db'
+require_relative 'model_base'
 
-class Question
+class Question < ModelBase
   attr_accessor :title, :body, :author
 
   def initialize(options)

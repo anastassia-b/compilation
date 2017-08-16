@@ -1,6 +1,7 @@
 require_relative 'questions_db'
+require_relative 'model_base'
 
-class QuestionFollow
+class QuestionFollow < ModelBase
   attr_accessor :user_id, :question_id
 
   def initialize(options)

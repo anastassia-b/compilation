@@ -1,6 +1,7 @@
 require_relative 'questions'
+require_relative 'model_base'
 
-class QuestionLike
+class QuestionLike < ModelBase
   attr_accessor :user_id, :question_id
 
   def initialize(options)

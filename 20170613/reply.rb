@@ -1,6 +1,7 @@
 require_relative 'questions_db'
+require_relative 'model_base'
 
-class Reply
+class Reply < ModelBase
   attr_accessor :questions_id, :parent_reply, :user_id, :body
 
   def initialize(options)

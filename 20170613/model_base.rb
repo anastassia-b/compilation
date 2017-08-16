@@ -34,4 +34,38 @@ class ModelBase
     data.map { |attrs| self.new(attrs) }
   end
 
+  def self.first
+    data = QuestionsDatabase.get_first_row(<<-SQL)
+      SELECT
+        *
+      FROM
+        #{table}
+      LIMIT
+        1
+    SQL
+
+    self.new(data)
+  end
+
+  def self.where(params)
+    if params.is_a?(Hash)
+      where_line = params.keys.map { |key| "#{key} = ?" }.join(" AND ")
+      vals = params.values
+    else
+      where_line = params
+      vals = []
+    end
+
+    data = QuestionsDatabase.execute(<<-SQL, *vals)
+      SELECT
+        *
+      FROM
+        #{self.table}
+      WHERE
+        #{where_line}
+    SQL
+
+    parse_all(data)
+  end
+
 end

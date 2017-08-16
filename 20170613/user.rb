@@ -1,6 +1,7 @@
 require_relative 'questions_db'
+require_relative 'model_base'
 
-class User
+class User < ModelBase
   attr_accessor :fname, :lname
 
   def self.all
