@@ -1,20 +1,27 @@
 #!/usr/bin/env ruby
 
-puts 'Input your email:'
-@current_user = User.find_by_email(gets.chomp)
+class CLI
+  def run
+    puts 'Input your email:'
+    @current_user = User.find_by_email(gets.chomp)
 
-if @current_user.nil?
-  raise 'That user doesn\'t exist'
+    if @current_user.nil?
+      raise 'That user doesn\'t exist'
+    end
+
+    puts 'What do you want to do?'
+    puts '0. Create shortened URL'
+    puts '1. Visit shortened URL'
+    option = Integer(gets.chomp)
+
+    case option
+    when 0
+      # create_url
+    when 1
+      # visit_url
+    end
+  end
+  
 end
 
-puts 'What do you want to do?'
-puts '0. Create shortened URL'
-puts '1. Visit shortened URL'
-option = Integer(gets.chomp)
-
-case option
-when 0
-  # create_url
-when 1
-  # visit_url
-end
+CLI.new.run
