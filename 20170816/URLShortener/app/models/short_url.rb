@@ -7,18 +7,18 @@ class ShortUrl < ApplicationRecord
     foreign_key: :submitter_id,
     primary_key: :id
 
-  def self.random_code
+  def self.random
     loop do
-      random_code = SecureRandom.urlsafe_base64(16)
-      return random_code unless ShortenedUrl.exists?(short_url: random_code)
+      random = SecureRandom.urlsafe_base64(16)
+      return random unless ShortenedUrl.exists?(short_url: random)
     end
   end
 
-  def self.create_for_user_and_long_url!(user, long_url)
+  def self.create_from_long!(user, long_url)
     ShortenedUrl.create!(
       submitter_id: user.id,
       long_url: long_url,
-      short_url: ShortenedUrl.random_code
+      short_url: ShortenedUrl.random
     )
   end
 end

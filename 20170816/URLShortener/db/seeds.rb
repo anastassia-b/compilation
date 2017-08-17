@@ -1,7 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+user2 = User.create!(email: "example@gmail.com")
+user1 = User.create!(email: "email.anastassia@gmail.com")
+
+url1 = ShortURL.create_from_long!(user1, 'www.wikipedia.com')
+url2 = ShortURL.create_from_long!(user1, 'www.stackoverflow.com')
+url3 = ShortURL.create_from_long!(user2, 'www.google.com')
+url4 = ShortURL.create_from_long!(user1, 'www.google.com')
+url5 = ShortURL.create_from_long!(user2, 'www.pinterest.com')
+
+Visit.record_visit!(user1, url1)
+Visit.record_visit!(user1, url2)
+Visit.record_visit!(user1, url3)
+Visit.record_visit!(user1, url3)
+Visit.record_visit!(user1, url4)
+Visit.record_visit!(user2, url1)
+Visit.record_visit!(user2, url5)
+Visit.record_visit!(user2, url4)
