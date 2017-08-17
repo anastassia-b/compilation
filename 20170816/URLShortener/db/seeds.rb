@@ -1,12 +1,15 @@
+User.delete_all
 user2 = User.create!(email: "example@gmail.com")
 user1 = User.create!(email: "email.anastassia@gmail.com")
 
-url1 = ShortURL.create_from_long!(user1, 'www.wikipedia.com')
-url2 = ShortURL.create_from_long!(user1, 'www.stackoverflow.com')
-url3 = ShortURL.create_from_long!(user2, 'www.google.com')
-url4 = ShortURL.create_from_long!(user1, 'www.google.com')
-url5 = ShortURL.create_from_long!(user2, 'www.pinterest.com')
+ShortUrl.delete_all
+url1 = ShortUrl.create_from_long!(user1, 'www.wikipedia.com')
+url2 = ShortUrl.create_from_long!(user1, 'www.stackoverflow.com')
+url3 = ShortUrl.create_from_long!(user2, 'www.google.com')
+url4 = ShortUrl.create_from_long!(user1, 'www.google.com')
+url5 = ShortUrl.create_from_long!(user2, 'www.pinterest.com')
 
+Visit.delete_all
 Visit.record_visit!(user1, url1)
 Visit.record_visit!(user1, url2)
 Visit.record_visit!(user1, url3)

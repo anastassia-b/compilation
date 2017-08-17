@@ -10,15 +10,15 @@ class ShortUrl < ApplicationRecord
   def self.random
     loop do
       random = SecureRandom.urlsafe_base64(16)
-      return random unless ShortenedUrl.exists?(short_url: random)
+      return random unless ShortUrl.exists?(short_url: random)
     end
   end
 
   def self.create_from_long!(user, long_url)
-    ShortenedUrl.create!(
+    ShortUrl.create!(
       submitter_id: user.id,
       long_url: long_url,
-      short_url: ShortenedUrl.random
+      short_url: ShortUrl.random
     )
   end
 end
