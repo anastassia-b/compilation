@@ -7,6 +7,17 @@ class ShortUrl < ApplicationRecord
     foreign_key: :submitter_id,
     primary_key: :id
 
+  has_many :visits,
+    primary_key: :id,
+    foreign_key: :short_url_id,
+    class_name: :Visit,
+    dependent: :destroy
+
+  has_many :visitors,
+    -> { distinct },
+    through: :visits,
+    source: :visitor
+
   def self.random
     loop do
       random = SecureRandom.urlsafe_base64(16)
