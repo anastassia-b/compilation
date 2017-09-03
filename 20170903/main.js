@@ -1,4 +1,4 @@
-const Game = require('./lib/game.js');
+const Game = require('./lib/game_es6.js');
 
 const canvasEl = document.getElementsByTagName("canvas")[0];
 canvasEl.height = window.innerHeight;
