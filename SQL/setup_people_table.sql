@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS aa_people;
+CREATE TABLE aa_people (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+DROP TABLE IF EXISTS hr_people;
+CREATE TABLE hr_people (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
+);
+
+DROP TABLE IF EXISTS friendships;
+CREATE TABLE aa_people (
+  aa_id INTEGER NOT NULL,
+  hr_id INTEGER NOT NULL
+);
