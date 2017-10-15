@@ -57,3 +57,27 @@ INSERT INTO
   food (id, foodtype, name, calories)
 VALUES
   (10, 'processed', 'fries', 400);
+
+
+DROP TABLE IF EXISTS favorite_food;
+CREATE TABLE favorite_food (
+  id INTEGER PRIMARY KEY,
+  fname VARCHAR(255) NOT NULL,
+  lname VARCHAR(255) NOT NULL,
+  food_id INTEGER NOT NULL
+);
+
+INSERT INTO
+  favorite_food (id, fname, lname, food_id)
+VALUES
+  (1, 'Kush', 'Patel', 8);
+
+INSERT INTO
+  favorite_food (id, fname, lname, food_id)
+VALUES
+  (2, 'Ned', 'Ruggeri', 5);
+
+INSERT INTO
+  favorite_food (id, fname, lname, food_id)
+VALUES
+  (3, 'Hasseb', 'Qureshi', 2);

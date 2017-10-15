@@ -1,17 +1,17 @@
-DROP TABLE IF EXISTS aa_people;
-CREATE TABLE aa_people (
+DROP TABLE IF EXISTS app_academy;
+CREATE TABLE app_academy (
   id INTEGER PRIMARY KEY,
   name VARCHAR(255) NOT NULL
 );
 
-DROP TABLE IF EXISTS hr_people;
-CREATE TABLE hr_people (
+DROP TABLE IF EXISTS hack_reactor;
+CREATE TABLE hack_reactor (
   id INTEGER PRIMARY KEY,
   name VARCHAR(255) NOT NULL
 );
 
 DROP TABLE IF EXISTS friendships;
-CREATE TABLE aa_people (
+CREATE TABLE friendships (
   aa_id INTEGER NOT NULL,
   hr_id INTEGER NOT NULL
 );
