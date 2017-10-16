@@ -1,7 +1,7 @@
 require 'pg'
 
 def execute(sql)
-  conn = PG::Connection.open(:dbname => 'food')
+  conn = PG::Connection.open(:dbname => 'lecture')
   query_result = conn.exec(sql).values
   conn.close
 
@@ -13,4 +13,4 @@ def all_food
   execute("SELECT * FROM food")
 end
 
-all_food.each {|food| p food}
+all_food.each { |food| p food }
