@@ -59,8 +59,8 @@ VALUES
   (10, 'processed', 'fries', 400);
 
 
-DROP TABLE IF EXISTS favorite_food;
-CREATE TABLE favorite_food (
+DROP TABLE IF EXISTS food_log;
+CREATE TABLE food_log (
   id INTEGER PRIMARY KEY,
   fname VARCHAR(255) NOT NULL,
   lname VARCHAR(255) NOT NULL,
@@ -68,16 +68,31 @@ CREATE TABLE favorite_food (
 );
 
 INSERT INTO
-  favorite_food (id, fname, lname, food_id)
+  food_log (id, fname, lname, food_id)
 VALUES
   (1, 'Kush', 'Patel', 8);
 
 INSERT INTO
-  favorite_food (id, fname, lname, food_id)
+  food_log (id, fname, lname, food_id)
 VALUES
   (2, 'Ned', 'Ruggeri', 5);
 
 INSERT INTO
-  favorite_food (id, fname, lname, food_id)
+  food_log (id, fname, lname, food_id)
 VALUES
   (3, 'Hasseb', 'Qureshi', 2);
+
+INSERT INTO
+  food_log (id, fname, lname, food_id)
+VALUES
+  (4, 'Kush', 'Patel', 9);
+
+INSERT INTO
+  food_log (id, fname, lname, food_id)
+VALUES
+  (5, 'Kush', 'Patel', 4);
+
+INSERT INTO
+  food_log (id, fname, lname, food_id)
+VALUES
+  (6, 'Ned', 'Ruggeri', 10);
