@@ -6,7 +6,23 @@
   <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
 </head>
 <body>
+
 <script>
+  const targetCode = "anastassia"
+  const pressedKeys = []
+  window.addEventListener('keyup', (e) => {
+
+    pressedKeys.push(e.key);
+    pressedKeys.splice(-targetCode.length - 1, pressedKeys.length - targetCode.length);
+
+    if (pressedKeys.join('').includes(targetCode)) {
+      console.log('DING');
+      cornify_add();
+    }
+
+  });
+
 </script>
+
 </body>
 </html>
