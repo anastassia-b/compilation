@@ -28,7 +28,7 @@ function paintToCanvas() {
     // console.log(pixels);
 
     // add pixel effect
-    pixels = pinkEffect(pixels);
+    pixels = colorSplit(pixels);
     ctx.putImageData(pixels, 0, 0);
   }, 16);
 }
@@ -54,8 +54,13 @@ function pinkEffect(pixels) {
   return pixels;
 }
 
-function rgbSplit(pixels) {
-
+function colorSplit(pixels) {
+  for(let i = 0; i < pixels.data.length; i+=4) {
+    pixels.data[i - 50] = pixels.data[i + 0]; // RED
+    pixels.data[i + 150] = pixels.data[i + 1]; // GREEN
+    pixels.data[i - 100] = pixels.data[i + 2]; // Blue
+  }
+  return pixels;
 }
 
 getVideo();
