@@ -22,9 +22,41 @@ function paintToCanvas() {
   canvas.width = width;
   canvas.height = height;
 
-  setInterval(() => {
+  return setInterval(() => {
     ctx.drawImage(video, 0, 0, width, height);
+    let pixels = ctx.getImageData(0, 0, width, height);
+    // console.log(pixels);
+
+    // add pixel effect
+    pixels = pinkEffect(pixels);
+    ctx.putImageData(pixels, 0, 0);
   }, 16);
 }
 
-getVideo()
+function takePhoto() {
+  snap.currentTime = 0;
+  snap.play();
+
+  const data = canvas.toDataURL('image/jpeg');
+  const link = document.createElement('a');
+  link.href = data;
+  link.setAttribute('download', 'cool-photo');
+  link.innerHTML = `<img src="${data}" alt="Cool Photo" />`;
+  strip.insertBefore(link, strip.firstChild);
+}
+
+function pinkEffect(pixels) {
+  for (let i = 0; i < pixels.data.length; i += 4) {
+    pixels.data[i + 0] = pixels.data[i + 0] + 200; // RED
+    pixels.data[i + 1] = pixels.data[i + 1] + 50; // GREEN
+    pixels.data[i + 2] = pixels.data[i + 2] + 100; // Blue
+  }
+  return pixels;
+}
+
+function rgbSplit(pixels) {
+
+}
+
+getVideo();
+video.addEventListener('canplay', paintToCanvas);
