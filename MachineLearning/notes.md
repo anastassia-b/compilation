@@ -1,6 +1,3 @@
-# Machine Learning Lecture Series
-Given by Ned Ruggeri at App Academy October - December 2017.
-
 ## Notes
 
 ### November 9
@@ -10,7 +7,6 @@ So thats how we can pick better phi values which are doing for the likelihood eq
 
 So we can square each of the two conditionally dependent words, or make one 1.0…
 
--
 No absence phis anymore.
 Base odds plus all of the absence features.
 Now when a word is presence. We’ll put in the presence ratio, and we’ll kill the absence feature. They’ve been folded into phi0.
