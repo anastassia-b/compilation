@@ -125,3 +125,43 @@ Partial derivatives. We need to know the error with respect to theta.
 Gradient descent.
 
 We can’t change z3 directly, but we can change the b’s and the thetas (or a’s?).
+
+
+### November 16
+
+Convolutional Neural networks for images.
+x_tensor: (60,000, 28, 28). Images are 28 by 28pixels.
+y_tensor: (60,000)
+
+An image is 0-255 values as intensities. We want to flatten the image to be one long value.
+Our layers are 1 dimensional, so we'll use a Flatten layer.
+
+The z values are the same: the weighted sums of the value of each node. linear sum.
+If there are 2 output classes, we had binary cross entropy.
+
+logistic regression because there are no hidden layers. categorical cross entropy.
+optimizer is stochastic gradient descent. one hot / to_categorical.
+
+We're testing categorizing images as digits. Linear regression alone works with a pretty surprisingly good accuracy. Kernel_initializer = "zeros" would set all the thetas to zero. Our concern would be if all the derivatives would be zero.
+
+ Learning the spatial representation of the pixels to guess a "5". It's recovering some information about the shapes of numbers.
+
+We want the network to learn the concept of horizontal lines regardless of its location.
+But it's hard to learn that if the network doesn't understand that various horizontal lines.. like 100 sunrises, and you ask on the next day what will happen, I don't know it's a totally different day.
+But want it to make that connection. To extract a general commonality that is useful.
+
+Filter dimension: receptive field of a filter.
+We intuit: Number of filters and filter dimensions!
+
+Learning horizontal and vertical lines.
+At the end of the day, a dense layer can do what a convolutional layer does...
+Sparse connectivity: the output values of the output image are only connected to a small number of values in the input image. It's much more efficient!
+
+Anything we can do to prep the image (crop, resize, rotate).
+Last note: new network recently which is the capsule network.
+Currently we are looking for patterns in a 2 dimensional image. But if our image is far away, or rotated.
+We haven't taken advantage of the fact that 2d images are from 3d worlds. But currently we live in flatland. There's a problem with pose.
+
+Change 0-255 into canonical range of 0 to 1. This really improved the classifications. The error derivatives.
+
+Next up will be: Recurrent neural network that read continuous data. Like text or sound.
