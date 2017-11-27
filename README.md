@@ -15,3 +15,6 @@ I created code demos for an intro to SQL lecture delivered on October 16, 2017.
 
 ### MachineLearning
 Currently attending an internal deep learning class at App Academy.  
+
+### Redux
+Using this [course](http://LearnRedux.com).
