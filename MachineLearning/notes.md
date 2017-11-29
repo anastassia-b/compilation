@@ -165,3 +165,84 @@ We haven't taken advantage of the fact that 2d images are from 3d worlds. But cu
 Change 0-255 into canonical range of 0 to 1. This really improved the classifications. The error derivatives.
 
 Next up will be: Recurrent neural network that read continuous data. Like text or sound.
+
+
+# November 28, 2017
+**Note: There were a lot of handwritten notes and diagrams for this lecture.**
+Now, we will learn about recurrent neural networks. recurrent tasks like series of words or letters.
+
+**Markov Models**
+
+A generalization of Markov chains and hidden Markov models.
+256 letters (ascii) codes. Words in the vocabulary.
+The graphical.
+
+Two problems.
+
+1. This doesn’t represent the way sentences are really formed.
+2. High dimensionally of the vocabulary.  So the model will not think that some words will never follow other words.
+
+**Hidden Markov Models**
+
+There is a hidden state. Such as what is in your head.
+The states are hidden from us. There might be too many to consider.
+But we can just assume that there are 128. states in your brain.
+
+Emission probability.
+The initial state will only emit one word. It is a random choice based on the emission probability.
+
+Graphical models. Such as trees are used for medical diagnosis.
+
+How do we learn this if an essential part is unknown to us (the hidden states)?
+
+**Recurrent Neural Networks**
+
+Just like with neural networks, we can begin with random Initial state probabilities, random transition probabilities, and random Emission probabilities (as long as the rows sum to 1).
+
+Prediction, Smoothing. There are 2 things that could tell us information, is the state before and the state after.
+How to figure out smoothing? Expectation Maximization.
+
+So we it up. We can calculate the state probabilities.
+
+We want to pick the model that makes the past the most likely out of unlikely events.
+Will this reach equilibrium? It will reach some non-improving state.
+
+You monitor the error rate, error metric (loss function) to the number of epochs.
+The loss converges but maybe not the models. Unsure.
+
+Look at the implementation of HMM in repository of nodes.
+
+What are the problems of the HMM?
+1. If the state space is small... but if we were to increase it, then the transition matrix quadruples in size. And if we have a lot of states and not enough data we won't learn. (Note).
+
+Trying to aggregate the brain states in a way which is predictive of the words. Comes up with categories, though might not be easy to tell. Taxonomies of documents.
+
+This model is _generative_. Which is nice. We can use category 1 to generate a document.
+Where as for image recognition, its _discriminative_.
+
+Denoise autoencoder.  
+
+* (Note). So we want to be more efficient in the way we learn.
+What if we have "large" and "animal" categories. How about a "large animals" categories. I want to use prior knowledge about largeness and animalness to learn a new category.
+
+We want to move away from discreet state matrices and move to neural networks.
+The # of state units is 128.
+
+The states is a combination of the pure state. We will have transition weights.
+This kind of network we train with brack propogation and cross entropy error.
+
+The only difference is that the transitions are the same between each layer. So are the emission probabilities.
+To generate text, you could randomly initialize the state, randomly sample a word, and calculate, then sample.
+
+This is effectively a hidden markov model with a hidden state space. This just allows mixtures of the pure states.
+It's the same dimensionality for the transition matrix. So the transition is a function, in mixing the states.
+It s a weight matrix now, multiply the vector.
+
+The most common activation function is Relo. But softmax has meaning. Its the logistic function, probabilities that sum out to 1. The state will be chosen from that probability distribution.
+
+Different ways of training models.
+1. Closed form solution.
+2. Gradient descent.
+3. Expectation maximization.
+4. genetic algorithms. kills off or share parts of code.
+  - but hard to determine how to share code that doesnt destroy it completely.
