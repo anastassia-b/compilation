@@ -1,6 +1,6 @@
 ## Notes
 
-### November 9
+### November 9, 2017
 
 Naive bayes can be wrong in so far as its assumptions are wrong.
 So thats how we can pick better phi values which are doing for the likelihood equation.
@@ -54,7 +54,7 @@ The discriminative one where if they go to a website in incognito mode.. we’re
 For medical diagnosis… other tests that you didn’t run are not equivalent to running tests and getting negative.
 GENERATIVE MODELS are in the medical domain, while discriminative models are used in a lot of other domains.
 
-### November 14
+### November 14, 2017
 
  Neural networks are networks of logistic regression models feeding into each other.
 Boolean variables take binary variables and output binary variables. (Like And and Or).
@@ -94,7 +94,7 @@ It’s pretty low level. You have to tell it that you give it the matrix of M by
 
 There’s an easier, higher concept version called Keras.
 
-### November 15
+### November 15, 2017
 
 Machine learning individual has intuition for the type of model.
 Each layer goes down in powers of 2 or 10.
@@ -127,7 +127,7 @@ Gradient descent.
 We can’t change z3 directly, but we can change the b’s and the thetas (or a’s?).
 
 
-### November 16
+### November 16, 2017
 
 Convolutional Neural networks for images.
 x_tensor: (60,000, 28, 28). Images are 28 by 28pixels.
@@ -167,7 +167,7 @@ Change 0-255 into canonical range of 0 to 1. This really improved the classifica
 Next up will be: Recurrent neural network that read continuous data. Like text or sound.
 
 
-# November 28, 2017
+### November 28, 2017
 **Note: There were a lot of handwritten notes and diagrams for this lecture.**
 Now, we will learn about recurrent neural networks. recurrent tasks like series of words or letters.
 
@@ -246,3 +246,86 @@ Different ways of training models.
 3. Expectation maximization.
 4. genetic algorithms. kills off or share parts of code.
   - but hard to determine how to share code that doesnt destroy it completely.
+
+### November 29, 2017
+
+Recap and correction from yesterday--
+We were trying to use sequence models to:
+* generate text
+* predict next token in the sequence
+* smoothing
+
+If we want to generate text for HMM its simple: we pick the initial state, then we use emission probability to emit a word, then use transitional probability to generate a new state. Generates word by word.
+
+Predicting the next token is a bit different. If you see "to be", and you want to guess next word, you don't know the hidden states, but you want a probability distribution on the 3rd state. Because that determines what word comes out. To figure out that, you need the 2nd hidden state, and work backwards.
+
+There's some algebra you can do to calculate it. How inference works.
+
+For RNNS, We have an initial state.
+Problem with other model: even if its 99% accurate... as soon as you get a wrong word, you're probably going to get every other word wrong. Overall your accuracy is low. There's no correction, no way to get back on track.
+
+These are not inferences, they are functions! The word is deterministically produced. Because the 3rd state is determined. While the word is a probability distribution, its always the same one. So you might get different words sometimes, but not what you want. It'll always try to write the same sentence.
+
+Generation: will struggle to learn the model at all, and no way to predict right word.
+
+So the right picture:
+It should have as the inputs, the REAL words. Out on top should be the guesses of the words. So it has a way to pull it back. And each is a function of the priming words, instead of the state. You can also predict the next token properly.
+
+Could also turn into generative mode, if you feed the words back in.
+
+---
+
+When you have RNN, the input below has a high dimensionality. For example, 50K words and 128 units. The weight matrix is huge.
+
+If you have elephant 1000 times, and if you only see gazelle 10 times, you dont know how to set the weights correctly for the transformation. We'd like to capture elephant and gazelle.
+
+Latent dirichlet allocation.
+We want to find a word embedding.
+A word2vec.
+
+We want to transform our words from being 50K dim vectors, to 256 dim vector. So instead of being a one hot encoding of individual words.
+Euclidian norm. So from sparse (everything is 0 except for 1 spot) representation to dense representation (distributed).
+
+We want to encode similar words in similar ways. So we've compressed it.
+
+The problem with the 50K encoding. Every word is the same "distance" to the same one. One alternative is to use numeric codes to represent the words. If we assign those words randomly then.. just because the numbers 3 and 4 are close together, if 3 is house and 4th is gazelle, they have nothing to do with each other. So while its more efficient, it still doesn't mean that things close together are conceptually similar. This is still bad since the emission is a LINEAR function. So things that are close, they'll stay close. So in 50K all are different.
+
+So let's figure out dense representation. We'll need more than one dimension. Like an elephant and a car. Once we figure out word embedding, we'll use that as the inputs.
+
+**Representation Learning**
+
+We want a better representation of words, where similar words have similar vectors of values.
+One thing that is common in RL is to use _unlabeled data_. The task we'll be performing is an unsupervised task.
+
+`large elephant trods slowly`
+
+So let's look at the two words next to elephant. We could look at a large window, and give more weight to the closer words. We want to train a network to use `large` and `trods` to figure out `elephant`. We really care about changing the embedding weights (and the weights connecting to elephant). Same way with back propagation..
+
+That's why google wants to digitize all books. They want to make a model over all books ever written. There's a ton of unlabeled data (as opposed to labeled cat photos).
+
+This is semi-supervised learning. Maybe. If we want to predict the next word in the sequence, there's a correct word. Like asking "Is the capital of USA Washington DC?".
+
+Let's see some variants of RNNs.
+"Is Ned cool?" -> Then answers the question.
+
+**Long short term memory network**
+
+Let's say I have a really long question, and then yes/no.
+With gradient descent, we tweak all the weights simultaneously. But here we're going to tweak the weights a little bit. like in the last state and the yes/no node. There are a lot of weights even just there, that matrix. But even if we tweak these..
+
+Even deep feedforward networks. Like telephone, the longer the chain, the worse the implementation. Fundamentally this is why its hard to train deep neural networks. For RNNS, the problem is even worse. Because in deep ones, the weight matrices are different, BUT in RNNS its the same weight matrix, so the problem compounds.
+
+Even if we change the weight matrix in the beginning, we can't predict, its so scrambled. So the network is biased to use the later information. The problem is with the training, it will disregard a source of truth further away.
+
+For LSTM, we'll still have inputs in each time, but instead of a layer of nodes that is the function of the state, we're going to have a more sophisticated cell, which we still feedforward. These cells are components, aggregates, they have a structure. We have the prior state, which comes into the cell, combined with the new input (concatenated), comes up with a new state. Normally if we fed this forward, that'd be a normal RNN. But we're also going to calculate a 256 dimension ~~sigmoid~~ tanh. New state is a delta of the prior state.
+
+There's a path by which a change in the beginning could have a fast/clear route to send signal all the way down. It's not corrupted by intermediate information. It's typical to use Relu (0 - +). But it's also a bit problematic since the state can only grow and grow. Weird. So we also use tanh. Which is like a sigmoid, from -1 to 1. Like a volume nob, an operation.
+
+Different kinds of networks.
+Prediction at every time step, another prediction after a couple steps, but what about translation?
+
+The output is variable length if I want for the end to figure it out...or if I output it at each step, that's also not good.
+
+So we'll get a state at the end. Which we'll feed into an RNN, which will generate french words. This is **Encoder/Decoder**. Sequence to sequence. Neural machine translation. State of the art. Harder for simultaneous interpretation. Encoder/Decoder is not a good fit for simultaneous.
+
+Question/Answer problems with memory and attention. Like outputting notes from each chapter instead of one "book" state at the end. And then getting a question state and feeding in the notes, to get a final answer.
