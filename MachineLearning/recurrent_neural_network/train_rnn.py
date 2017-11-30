@@ -5,14 +5,15 @@ import numpy as np
 
 BATCH_SIZE_LINES = 64
 LINE_CHAR_LENGTH = 128
-BATCH_CHAR_LENGTH = BATCH_SIZE_LINES + LINE_CHAR_LENGTH
+BATCH_CHAR_LENGTH = BATCH_SIZE_LINES * LINE_CHAR_LENGTH
 
 with open('anna-simplified.txt', 'r') as f:
     text = f.read()
 
 NUM_BATCHES = len(text) // BATCH_CHAR_LENGTH
 
-text_array = np.fromstring(text, npunit8)
+text_array = np.fromstring(text, np.uint8)
+
 text_x_array = text_array[:(NUM_BATCHES * BATCH_CHAR_LENGTH)]
 text_x_matrix = text_x_array.reshape((-1, LINE_CHAR_LENGTH))
 train_x = None
@@ -38,6 +39,7 @@ for i in range(BATCH_SIZE_LINES):
         train_x = np.concatenate([train_x, batch_x], axis = 0)
         train_y = np.concatenate([train_y, batch_y], axis = 0)
 
+
 print("SHAPES")
 print(train_x.shape)
 print(train_y.shape)
@@ -50,12 +52,11 @@ print(train_x.shape)
 print(train_y.shape)
 
 model = Sequential()
-#Transition?
 model.add(SimpleRNN(
     units = 256,
     activation = 'relu',
     stateful = True,
-    batch_input_size = (
+    batch_input_shape = (
         BATCH_SIZE_LINES,
         LINE_CHAR_LENGTH,
         256
@@ -63,7 +64,6 @@ model.add(SimpleRNN(
     return_sequences = True,
     unroll = True,
 ))
-#Emission?
 model.add(Dense(
     256,
     activation = 'softmax',
