@@ -13,8 +13,5 @@ I created code demos for an intro to SQL lecture delivered on October 16, 2017.
 ### JavaScript30
 30-day Javascript challenge created by WesBos.
 
-### MachineLearning
-Currently attending an internal deep learning class at App Academy.  
-
 ### Redux
 Using this [course](http://LearnRedux.com).
