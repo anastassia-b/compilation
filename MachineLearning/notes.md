@@ -168,7 +168,7 @@ Next up will be: Recurrent neural network that read continuous data. Like text o
 
 
 ### November 28, 2017
-**Note: There were a lot of handwritten notes and diagrams for this lecture.**
+
 Now, we will learn about recurrent neural networks. recurrent tasks like series of words or letters.
 
 **Markov Models**
@@ -329,3 +329,51 @@ The output is variable length if I want for the end to figure it out...or if I o
 So we'll get a state at the end. Which we'll feed into an RNN, which will generate french words. This is **Encoder/Decoder**. Sequence to sequence. Neural machine translation. State of the art. Harder for simultaneous interpretation. Encoder/Decoder is not a good fit for simultaneous.
 
 Question/Answer problems with memory and attention. Like outputting notes from each chapter instead of one "book" state at the end. And then getting a question state and feeding in the notes, to get a final answer.
+
+
+### November 30, 2017: Autoencoders and GANs
+
+Representation Learning.
+The space is scrambled up, but we'd like a linear regression model with Cat photos on one side and not on the other.
+The euclidean distance. You can do 30 x 30 image with a 900 dimensional vector. Images that contain cats are not going to fall...
+The original representation doesn't help us. So we want to transform the data points... find new representations maybe different number of dimensions. But we can change the meaning of the space.
+
+The promise of neural networks is to discover new representations. (Today is like a parallel to word2vec yesterday, but with images).
+In a sense all of deep learning is to learn about representations. Why do we prefer one representation over another?
+We prefer a representation if it sets us up to do a good job. Training signal of yes cat or no cat. This is going to drive the re-featurization process.
+
+If we're looking for images of cats online... they are probably mostly unlabeled. We'd like to be able to use the photos which are unlabeled.
+How can use use the (large) unlabeled and (small) labeled data to make a representation. This is semi-supervised learning with autoencoders. This is an important historical technique because it was the first way we trained deep networks.
+
+The idea is we have an input. We don't have a training signal. We might want to map it to a representation. And the output that we want is the input again. In a sense, we're encoding something so that later we can decode it and get ourself back again. This is like MP3 compression. So autoencoders are going to learn to encode and decode.
+
+How do we know we've done a good job. We'll take the L2 distance between the input and output. This is the generalization of the distance metric in the real world. But its not necessarily semantically meaningful. It's not the ideal loss metric but its one. (Examples: audio, throw away high frequency that dogs can hear but humans cant, or image distortions, its hard to know what humans find easy or hard for comp model).
+
+Unsupervised pre-training of a neural network. Instead of starting the weights randomly, we start with the weights from the autoencoder.
+
+**Several types of Autoencoders**
+
+* **Undercomplete**. Make the representation smaller (like word2vec embedding). Advantages include: representation is smaller, so you have a smaller inputs, so thats a significant reduction in reduction of weights. Good for memory usage and compute time, also helps not overfitting and learning values. Another advantage is it is a representation that plays nice with linear functions. E, D are linear transformations. It must have found a representation where applying a linear function restores semantic values. It couldn't have stored the data in a way that a linear function can't understand. Thats what we want in the end, linear separability of the classes. Therefore, similar images are likely to be closer together. Greedy layer unsupervised pre-training.
+  * Question. Well, D2 is not just the inverse of E2. But that's too simple (there's a relu). Talk about PCA. We want to store a 2 dim dataset with 1 dim. The line is like the decoding function. The 'l' value is the encoding (how far away the point is from the line). If E and D are linear functions, its like PCA for each step. To make things more sophisticated, we often use a non-linear activation function. In this way we can use non-linear relationships (with a relu function or a deep autoencoder with more hidden layers). Manifold is the curvy plane/line that is analogous to the PCA line. The autoencoder, when projecting onto the manifold, will have a low reconstruction error. We'll still use a length to figure out where on the manifold you are.
+  * This would be like 10 lines of keras code, super easy. There is a dataset called Mnist. It's the digits. We want to keep 10% of the data with labels, and ignore the remaining 90%. Train an autoencoder with 90% and train a neural network with the remaining 10%.
+
+  -> Tangent: Transfer learning. Train network to find cats. Then change the last classification layer to find cats. Actually does a pretty good job. Groups like google and microsoft publish the weights.
+
+* What if I have an enocoding that is just as big? Cool, I'll just apply the identity function. What if instead of reducing the dimensionality, I use a **regularization penalty**? For example, for using non-zero values. It's almost in a sense.. **This is a sparse autoencoder**. You can consider it a variable length encoding. With this way, you don't force everyone to have the same dimensionality. So you can say, you can use however many words you need to describe this image.
+
+* **Denoising autoencoder**. Put in a corrupted image (with gaussian noise). There's a matrix for convolution, for sharpening images.
+
+* **Variational autoencoder**. This is a competitor to generative adversarial networks.
+
+**Generative Adversarial Networks**
+
+Another way to find representations and a lot of other cool stuff. We've gotta have another way of comparing the output to the input. The L2 loss function is not semantically meaningful.
+
+Forget about internal representation. Let's talk image synthesis.
+Generator is trying to generate fake images and the Discriminator is trying to detect fake images.
+We will train the discriminator with the output of the generator. You can train these together.
+If your text was "old man crossing the street"... to just use L2 to test generator would be problematic, since a thousand different ways to represent this text in a photo. The L2 loss doesn't respect the idea that two images could be totally different but be about the same thing. Ears are visually salient to us, but L2 loss tend to blur out the ears.
+
+In a sense the discriminator is learning a loss function for the generator. Where are we going to get a better distance metric from? What do we think are semantically meaningful, to inject our knowledge? This has flipped it around. Actually, I'll just pose a simple adversarial function between these two things. Theres no loss function at all. Theres only cross entropy, and you'll figure out the loss function yourself. The generator will try its best with the loss function you learn.
+
+GANs favor answers which are really sharp. As opposed to L2 loss. I have to give a sharp answer. It's more all or nothing. It's good for super resolution. You can also use GANs as a feature extractor. The advantage is not that the features are used to reconstruct a blurry image, but that there are more semantic meanings to the representation than an autoencoder. It has a sharper distinction, different criteria for representation. On the other hand, it could lose a lot of information if its mistakes that the generator makes...
