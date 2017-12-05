@@ -15,3 +15,6 @@ I created code demos for an intro to SQL lecture delivered on October 16, 2017.
 
 ### Redux
 Using this [course](http://LearnRedux.com).
+
+### Python
+Refreshing python skills with [Learn Python The Hard Way](https://learnpythonthehardway.org).
