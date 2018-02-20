@@ -10,11 +10,11 @@ This repository was preparation for the Blockchain Hackathon attended October 21
 ### SQL
 I created code demos for an intro to SQL lecture delivered on October 16, 2017.
 
-### JavaScript30
-30-day Javascript challenge created by WesBos.
-
-### Redux
-Using this [course](http://LearnRedux.com).
+### JavaScript30, CSS Grid, Redux
+Completed several mini-courses created by WesBos to sharpen front-end skills.
 
 ### Python
 Refreshing python skills with [Learn Python The Hard Way](https://learnpythonthehardway.org).
+
+### DevOps
+[DevOps BootCamp (DOBC)](https://devopsbootcamp.osuosl.org/) is a free course hosted by the OSU Open Source Lab. The course is dedicated to teaching core software development and systems operation skills to passionate OSU students and community members.

@@ -1,55 +1,55 @@
 ### Lesson 1: First Steps
 
 You will Learn:
-Linux systems
-Networking
-Software development
-Tools and why they matter
+* Linux systems
+* Networking
+* Software development
+* Tools and why they matter
 
 You will build:
-Functioning applications on the cloud
-Cloud infrastructures
+* Functioning applications on the cloud
+* Cloud infrastructures
 
 General Topics:
-Software: A program that runs on a computer.
-Operating System: Computer software that manages other software.
-GNU/Linux: A free Operating System.
-Computer Security: Like physical security but harder to solve with a baseball bat.
-Virtual Machine: A computer emulated in software.
-Containers: Not virtual machines, but basically virtual machines.
-Development:
-Version Control: A way to track changes and contributions to a project.
-Continuous Integration: Releasing updates continuously.
-Buzzwords:
-FOSS: Free (and Libre) Open Source Software. Free as in Speech, not Free as in Pizza (but that too usually).
-‘The Cloud’: Computers somewhere else.
-Docker: Software that manages Linux containers
+* Software: A program that runs on a computer.
+* Operating System: Computer software that manages other software.
+* GNU/Linux: A free Operating System.
+* Computer Security: Like physical security but harder to solve with a baseball bat.
+* Virtual Machine: A computer emulated in software.
+* Containers: Not virtual machines, but basically virtual machines.
+* Version Control: A way to track changes and contributions to a project.
+* Continuous Integration: Releasing updates continuously.
+* FOSS: Free (and Libre) Open Source Software.
+* ‘The Cloud’: Computers somewhere else.
+* Docker: Software that manages Linux containers
 
-SSH: Secure Shell
+**SSH: Secure Shell**
+
 Secure Shell (SSH) provides a secure channel to access a Linux machine remotely via command line.
 It’s a primary tool for almost every DevOps engineer
 Designed as a replacement to Telnet which provides unsecured remote shell access
 Allows for password logins and private/public key-based logins which are more secure
-Some tricks you can do with SSH
-Run a single command remotely
-Secure file transfer (via scp or WinSCP)
-Port forwarding, SOCKS proxy or tunnel
-SSHFS – userspace filesystem which uses SSH
+
+Some tricks you can do with SSH:
+* Run a single command remotely
+* Secure file transfer (via scp or WinSCP)
+* Port forwarding, SOCKS proxy or tunnel
+* SSHFS – userspace filesystem which uses SSH
 
 ### Lesson 2: Operating Systems
 
 An Operating System is the software which manages physical computing resources, interfaces between the hardware and the applications on a computer, and what exposes a creates a number of APIs for giving developers access to low-level applications / hardware.
+
 The OS is not always one thing or another. Some Operating systems are behemoths while others are minimal. Some are designed for teaching purposes while others are optimized for managing data centers.
 
-The general diagram, from you -> hardware, looks like this:
-
-User Interface: What you interact with. Window Managers for instance.
-Application Layer: What developers use to make software run.
-Kernel: The Core of the OS. Makes communication between hardware and applications sane.
-Hardware: What does the actual computations. The thing your keyboard is plugged into.
+* User Interface: What you interact with. Window Managers for instance.
+* Application Layer: What developers use to make software run.
+* Kernel: The Core of the OS. Makes communication between hardware and applications sane.
+* Hardware: What does the actual computations. The thing your keyboard is plugged into.
 
 
 Popular Operating Systems
+
 There are many popular (used daily by many people) Operating Systems out there. The ones listed below all get the same jobs done (browsing the web, editing documents, playing games, etc), but they approach the problem in a technically or philosophically different way.
 
 UNIX
@@ -98,3 +98,104 @@ How is Debian different from Gentoo?
 
 
 ### Lesson 3: Docs & Communication
+
+IRC is a very old protocol for communicating online with other people. On IRC it is easy to create a new channel (chat-room) and talk with people in public or privately.
+
+It has become the long-standing de facto mode of online communication right next to mailing lists in the technology community.
+
+Quick Facts:
+Internet Relay Chat (IRC)
+Very old (RFC 1459, May 1993)
+Works on everything (Terminal, GUI, Web-browser, etc)
+
+*Ssh into it*
+
+
+### Lesson 4: Shell Navigation
+
+A shell is a text-based user-interface for a computer.
+
+Shells are the programs which allows you use a computer via text-based commands. Not to be confused with a **terminal, which is the environment a shell runs in** (GNOME terminal, tty1, etc). A shell is run in a terminal, a terminal is the widow you use the shell in.
+
+Shell examples: `sh`, `bash`, `csh`...
+
+Navigation Concepts:
+* Invoking a program
+* Flags
+* Environment Variables: `env`
+* Pipe
+* Directory / Root / Tree
+
+```sh
+# Prints the current working directory (where you are)
+$ pwd
+# Prints the contents of the current working directory
+$ ls
+# Navigates to a new directory.
+$ cd <path/to/other/directory>
+# Prints a string to the screen.
+$ echo "some thing $AND_VARS"
+# Prints the contents of a file(s) to the screen.
+$ cat foo.txt bax.txt
+# Searches `file.txt` for the string `foo`
+$ grep foo file.txt
+# Prints a file to the screen so you can arrow up/down.
+$ less file.txt
+# Prints environment variables to the screen.
+$ env
+# Prints out current user
+$ whoami
+# When in doubt, always type help.
+$ help
+```
+
+Shell Scripts
+
+
+
+### Lesson 5: Users, Groups, Permissions
+
+
+### Lesson 6: Files
+
+
+### Lesson 7: Packages, Software, Libraries
+
+
+### Lesson 8: Version Control
+
+
+### Lesson 9: Programming
+
+
+### Lesson 10: Frameworks
+
+
+### Lesson 11: Testing
+
+
+### Lesson 12: Continuous Integration
+
+
+### Lesson 13: Security
+
+
+### Lesson 14: Databases
+
+
+### Lesson 15: Dev Processes & Tools
+
+
+### Lesson 16: DNS
+
+
+### Lesson 17: Configuration Management
+
+
+### Lesson 18: Application Isolation
+
+
+### Lesson 19: Cloud Infrastructure
+
+
+### Lesson 20: Contributing to Open Source
