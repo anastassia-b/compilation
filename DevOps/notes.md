@@ -1,3 +1,27 @@
+## Topics
+##### 1: First Steps
+##### 2: Operating Systems
+##### 3: Docs & Communication
+##### 4: Shell Navigation
+##### 5: Users, Groups, Permissions
+##### 6: Files
+##### 7: Packages, Software, Libraries
+##### 8: Version Control
+##### 9: Programming
+##### 10: Frameworks
+##### 11: Testing
+##### 12: Continuous Integration
+##### 13: Security
+##### 14: Databases
+##### 15: Dev Processes & Tools
+##### 16: DNS
+##### 17: Configuration Management
+##### 18: Application Isolation
+##### 19: Cloud Infrastructure
+##### 20: Contributing to Open Source
+
+---
+
 ### Lesson 1: First Steps
 
 You will Learn:
