@@ -335,17 +335,155 @@ REST (Representational State Transfer) is a web architecture that takes advantag
 
 ### Lesson 11: Testing
 
+With automated testing you spend a slightly longer up-front in writing the tests up, but then you can run all of your tests with a single command (or with Continuous Integration, no commands at all!)
+
+Most tests consist of the same general structure:
+* Set-up: Any pre-testing steps occur here. For instance, your application may use a database; this is where you would populate that database with test data.
+* Expected output: The expected results of your function calls are outlined.
+* Actual output: The functionality being tested is implemented and its results are recorded.
+* Comparison: Now the two values (expected and actual) are compared, usually using some form of the syntax expect(expected == actual). If the contents of the expect call is false, then the test-runner (more on that later) raises an error, continues running the test, and produces a traceback at the end of all tests.
+* Tear-down: The setup and the tests are undone. If data was populated during the test that data is removed; if files were written they are deleted. This is to ensure that each test is completed in the same environment and each one is self-contained.
+
+**Testing Pyramid**
+
+1. Unit Testing
+  *  Testing each component (function, struct, class, etc) individually, ignoring how the program works as a whole in favor of verifying each piece.
+2. Integration Testing
+    * Testing how each function works together. Ensuring the components do what they are expected to do.
+3. Systems Testing
+    * Testing the program as a whole in an environment (computer, operating system) similar to its target platform(s).
+
+**Concept: Mocking**
+* Simulating behavior external to a program so your tests can run independently of other platforms.
+* You’re testing your program, not somebody else’s. Mock other people’s stuff, not your own.
+* For example: If you are writing a library that wraps a web API you would mock that API so you can ensure the tests run even when the website it wraps is down.
+
 ---
 
 ### Lesson 12: Continuous Integration
+
+Continuous Integration is a name for any kind of automated tool that performs the following tasks:
+* Detects changes to your project
+* Runs a suite of tests on the changed code
+* Alerts the people that care if something good/bad happened
+
+CI tools are also known to do a slew of other things:
+* Builds and releases new versions of a package when they’re needed
+* Builds documentation and other parts of a project with each new release
+
+Automated Testing is the most common/easiest.
+(Travis, Jenkins, CircleCI)
 
 ---
 
 ### Lesson 13: Security
 
+Physical Security
+  * Use physical barriers to prevent unauthorized access to data
+Software Security
+  * Fix flaws in your application that could grant attackers unwanted levels of access to your systems
+Network Security
+  * Security pertaining to networked services (websites, databases, etc).
+  * Active: in which an intruder initiates commands to disrupt the network’s normal operation (Denial-of-Service, Ping of Death)
+  * Passive: a network intruder intercepts data traveling through the network. (Man-in-the-Middle, Wiretapping, Idle Scan)
+
+**Access Control**
+
+Identification: Who is this person?
+* Identification is the first step in granting access. During this step, the user identifies themselves to the system they wish to access. One example of an identifying piece of information is a username. In most cases, however, identification isn’t enough. It’s easy enough to claim to be someone that you aren’t, which is why you have to perform Authentication alongside identification.
+
+Authentication: Is this person who they say they are?
+* An example of Authentication would be asking for a password or passphrase. When you are logging into a website or computer you are authenticating.
+
+Authorization: Is this person allowed to perform this action?
+* An example of Authorization is when you try to open a file on a shared computer and you are denied access. Your user (that you authenticated as) is not allowed to access that file.
+
+#### Certificates
+Certificates are what allows your computer to create a secure connection with a server and transfer sensitive data across the wire.
+
+**HTTPS**
+
+Hyper Text Transfer Protocol Secure.
+
+This is an extension of the HTTP protocol designed for secure web communication, but it’s a good idea to ensure that you’re using it everywhere by replacing http:// with https:// or by using a browser extension like HTTPS Everywhere.
+
+**Certificate Authorities**
+
+An entity that issues digital certificates for HTTPS connections. These certificates are trusted by Browsers through a web of trust. Anybody can create their own certificates, but only certificate authorities can issue a certificate signed by a trusted organization.
+
+**SSL/TLS**
+
+Secure Socket Layer/Transport Layer Security.
+
+This is the actual protocol used for secure connections over the web. TLS is the new protocol that replaced SSL, but they are sometimes discussed as one / interchangeably.
+
+#### Code Injection Attacks
+
+SQL Injection
+* SQL Injection is when you take advantage of the fact that a form input is inserted directly into a SQL query. You write some password and then write a new SQL query which drops all tables, or returns all data, exploiting an easy security hole.
+
+Cross-Site Scripting (XSS)
+* Cross-Site Scripting is when a malicious script is sent to, and run on, a person’s computer. This tends to take advantage of the fact that your browser blindly runs any JavaScript you tell it to.
+
+Cross-Site Request Forgery (CSRF)
+* CSRF is when one website on your browser tries to carry out an action as you on a different website. For instance you’re an admin of some big social media website, you get an email, embedded in the email is a CSRF script which tries to delete all user accounts on your website. Since you’ve got your credentials cached your browser doesn’t know better and can run that command becuase it looks like any other command.
+
+#### Defenses
+Sanitize Inputs
+* Input sanitation is when your code sniffs a piece of input to see if it looks like a SQL or code of any kind. If it does look like code it’s probably malicious so your program errors out and tells the user to enter a real input.
+
+CSRF Tokens
+* A CSRF token is a unique string that has to be tied to each request you send to a server. You don’t need to log back in each time you get a new one but the application won’t complete your action unless the token is included in your query. This means only the website you’re logged into can send a real query because only that website knows the CSRF token.
+
+
 ---
 
 ### Lesson 14: Databases
+
+When people talk about databases they tend to talk about the underlying Database Management System (DBMS). These are programs like MySQL or PostgreSQL which are designed to complete the tasks of storing, retrieving, updating, caching, deleting, and other data manipulation. SQL databases are based on around Relational Algebra
+
+Some DBMS are optimal for specific situations. For instance SQLite is good for small databases since it stores data in a file on disk. MySQL is good for large projects, but can be a pain to setup and manage.
+
+Databases are very good at efficiently storing large amounts of data. The catch is that your data must be well structured by a schema. You can’t just dump data into a database, the data must first be defined in a schema and inserted to fit in that schema. That is almost always a worth-while tradeoff when dealing with big data.
+
+#### Concurrent Read/Write
+
+In order to quantify how well a database engine handles the demands of a concurrent world, it is assessed by the properties of ACID:
+
+* Atomicity: Either the entire transaction succeeds or it fails completely
+* Consistency: Transactions always leave the database in a valid state
+* Isolation: Concurrent operations look like they took place sequentially
+* Durability: Transactions are permanent after they’re committed
+
+#### Types
+SQL:
+* Stores data in tables organized by column and field.
+* SQL Databases are interfaced with SQL Queries (more on that later) and require a great deal of structure. SQL databases are not known for their flexibility and require a lot of forethought before being created. That said they tend to be very fast and are standardized in the industry.
+* MySQL/MariaDB, PostgreSQL, SQLite
+
+NoSQL:
+* Stores data differently than an SQL database.
+* In cases like these a NoSQL database can be used to store you database in different / more flexible ways. NoSQL databases can also offer more flexibilty in storage options, allowing one to spread data across many machines more easily than SQL databases tend to do.
+* MongoDB, Apache Casandra, Dynamo, Redis
+
+NewSQL:
+* A middle-ground between SQL and NoSQL
+
+- [x] Schemas, Migrations
+- [x] Raw Queries, Native Queries, ORMs
+
+**Object Relational Mappers**
+
+An Object Relational Mapper (ORM) is a library which allows you to write in a native programming language to interface with a database. So instead of crafting SQL queries you express in your native language what you want the database to do. This means you don’t write any SQL, the programming language handles those specifics for you.
+
+The real benefit of an ORM is that you can use any database backend you want and the ORM will compile your native code into a query for that database.
+
+As an example you can write all of your queries for your database. In testing you use an in-memory SQLite database (very fast) and in production you use a PostgreSQL database. Testing with a Postgres database is a pain to setup, but you probably wouldn’t want to run SQLite in production.
+
+* Maps an Object in an application to a database table or relationship.
+* Talks SQL to the database, your favorite language to you.
+* Lets you point to different databases with the same syntax.
+* Intelligently manages transactions to the database.
 
 ---
 
