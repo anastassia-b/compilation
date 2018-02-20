@@ -220,19 +220,116 @@ Can edit file metadata with:
 
 ### Lesson 7: Packages, Software, Libraries
 
+Popular Linux System Package Managers:
 
+These are package managers used to install system packages like Web-browsers, terminals, network managers, etc. Although they are default OS package managers, a package manager itself is really just a package itself, so one can install any package manager they want.
+
+.rpm
+* yum - RPM Package manager with repo support
+* rpm - low level package manager tool used by yum
+* Used by RedHat, CentOS, Fedora and others
+
+.deb
+* apt - Debian package manager with repo support
+* dpkg - low level package manager tool used by apt
+* Used by Debian, Ubuntu, Linux Mint and others
+
+Yum vs. Apt
+
+Yum
+* XML repository format
+* Automatic metadata syncing
+* Supports a plugin module system to make it extensible
+* Checks all dependencies before downloading
+
+Apt
+* Upgrade and Dist-Upgrade
+* Dist-Upgrade applies intelligent upgrading decisions during a major system upgrade
+* Can completely remove all files including config files
 
 ---
 
 ### Lesson 8: Version Control
 
+- [x] Totally good with this section.
+
 ---
 
 ### Lesson 9: Programming
 
+**Static Vs Dynamic Typing**
+
+In statically typed languages, types are either known or deduced at compile time. When you run a program, the computer knows which variables are integers, which variables are strings, etc. Examples of statically typed languages include C, C++, and Java.
+
+In dynamically typed languages, you don’t know what the type of a variable is until it has been assigned. Examples of dynamically typed languages include Python, Ruby, and PHP.
+
+**Strong Vs Weak Typing**
+
+Strongly typed languages enforce type safety. What this means is that you can’t, for example, use an int in the place of a float. However, this can be useful for catching bugs that would otherwise hide themselves in large codebases and cause problems.
+
+Weakly typed languages are permissive in allowing types to act like different types. In reality, though, no language is either strongly or weakly typed. However, some languages are more strongly typed than others.
+
+**Functions, Structs, and Objects**
+
+* Structs are collections of logically grouped variables. They can be treated as variables with sub-variables.
+* Objects are collections of logically grouped functions and variables. They are declared in a class and an instance of a class is an object. The class can be thought of as the blueprint for an object.
+
+Duck-typing:  As long as an object implements the proper interfaces, it can act like any type it wants.
+
+When developing a Python project you will want to use a virtual environment. This isolates the dependencies of your project from the Python software installed on your computer.
+
 ---
 
 ### Lesson 10: Frameworks
+
+Frameworks are collections of classes, functions, and constants designed to make completing a task easier.
+Examples include:
+* Web-app frameworks
+* Game frameworks
+* GUI frameworks
+* Testing frameworks
+
+Frameworks:
+* are meant to make the life of a developer easier by supplying programmers with tools and design patterns to accomplish a task in an expressive and relatively simple way.
+* simplify a program by implementing tedious parts of a to let the programmer focus on the “Big Picture” and “Application Specific Needs”.
+* tend to exist for commonly developed types of applications to reduce the amount of time spent on repeated development steps like recieving HTTP requests or drawing sprites to a screen.
+
+**Static vs Dynamic Sites**
+
+Static:
+* A static site delivers the same content to anybody visiting. Static sites can either be written in pure HTML/CSS/Javascript, or a static site generator can be used to write content in another markup language to be compiled to HTML
+* Rarely changes, looks the same for all visitors (Blog, News, Document)
+
+Dynamic:
+* A dynamic site changes as the user or users interact with it. Social networks and search engines are good examples of dynamic sites. Web Frameworks are primarily used in dynamic sites and rarely in static sites.
+* Changes based on who you are and what you do. (Search Engine, Login)
+
+Note: Dynamic websites are vulnerable to a much wider variety of attacks than static websites are.
+
+Python: Django, Flask
+Ruby: Rails, Sinatra
+Node.js: ExpressJS
+
+- [x] MVC Architecture
+
+**URL Routing:** A core component in every web framework is URL routing. This is where you tell a framework what to do when a user performs an action on a specific URL.
+
+**Templating Engines**: Templating engines are the “Views” part of the MVC architecture. They take a string, or file, with places for variables and stick the specific values in.
+
+**HTTP Concepts:**
+* Resource: A thing that exists and is accessible using HTTP
+* URI: A string that is used to identify the location of a resource
+* Request: Data that is sent by the client to the server, asking the server to perform some action
+* Method: The part of the request specifying the action that the client wants the server to perform
+* Response: The server’s response back to the client after processing the client’s request
+* Error Code: The part of the response summarizing the server’s response to the request
+
+**REST**
+
+REST (Representational State Transfer) is a web architecture that takes advantage of HTTP’s features by defining a set of rules for how servers handle client requests and format their responses. There are many of these rules, but the most important are:
+* Servers are stateless
+* Resources are self-contained
+* HTTP methods have predictable side-effects
 
 ---
 
