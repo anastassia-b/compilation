@@ -1,25 +1,24 @@
 ## Topics
-
-#### 1: First Steps
-#### 2: Operating Systems
-#### 3: Docs & Communication
-#### 4: Shell Navigation
-#### 5: Users, Groups, Permissions
-#### 6: Files
-#### 7: Packages, Software, Libraries
-#### 8: Version Control
-#### 9: Programming
-#### 10: Frameworks
-#### 11: Testing
-#### 12: Continuous Integration
-#### 13: Security
-#### 14: Databases
-#### 15: Dev Processes & Tools
-#### 16: DNS
-#### 17: Configuration Management
-#### 18: Application Isolation
-#### 19: Cloud Infrastructure
-#### 20: Contributing to Open Source
+* 1: First Steps
+* 2: Operating Systems
+* 3: Docs & Communication
+* 4: Shell Navigation
+* 5: Users, Groups, Permissions
+* 6: Files
+* 7: Packages, Software, Libraries
+* 8: Version Control
+* 9: Programming
+* 10: Frameworks
+* 11: Testing
+* 12: Continuous Integration
+* 13: Security
+* 14: Databases
+* 15: Dev Processes & Tools
+* 16: DNS
+* 17: Configuration Management
+* 18: Application Isolation
+* 19: Cloud Infrastructure
+* 20: Contributing to Open Source
 
 ---
 
@@ -60,6 +59,8 @@ Some tricks you can do with SSH:
 * Secure file transfer (via scp or WinSCP)
 * Port forwarding, SOCKS proxy or tunnel
 * SSHFS – userspace filesystem which uses SSH
+
+---
 
 ### Lesson 2: Operating Systems
 
@@ -121,6 +122,7 @@ How is Linux different from Windows? OSX?
 How is Debian different from Gentoo?
 * Each distro (including Debian vs Gentoo) differ in ideology. Gentoo wants to be a Linux distro that does one thing well while Debian wants to do something different well. Very few distros have identical philosophies.
 
+---
 
 ### Lesson 3: Docs & Communication
 
@@ -135,6 +137,7 @@ Works on everything (Terminal, GUI, Web-browser, etc)
 
 *Ssh into it*
 
+---
 
 ### Lesson 4: Shell Navigation
 
@@ -170,6 +173,7 @@ $ less file.txt
 $ env
 ```
 
+---
 
 ### Lesson 5: Users, Groups, Permissions
 
@@ -188,6 +192,8 @@ All users have a specific set of permissions, i.e., things they can and cannot d
 The way you act as root is one of two ways:
 * `su root` Is like logging in as root. Prompts you for the root user’s password.
 * `sudo <command>` runs a single command as root. Prompts you for your password, but requiresyou to be on the sudoers list.
+
+---
 
 ### Lesson 6: Files
 
@@ -210,43 +216,60 @@ Can edit file metadata with:
 
 (Anastassia note: Ah, I've symlinked specs before. Type of file, cool.)
 
+---
+
 ### Lesson 7: Packages, Software, Libraries
 
 
+
+---
+
 ### Lesson 8: Version Control
 
+---
 
 ### Lesson 9: Programming
 
+---
 
 ### Lesson 10: Frameworks
 
+---
 
 ### Lesson 11: Testing
 
+---
 
 ### Lesson 12: Continuous Integration
 
+---
 
 ### Lesson 13: Security
 
+---
 
 ### Lesson 14: Databases
 
+---
 
 ### Lesson 15: Dev Processes & Tools
 
+---
 
 ### Lesson 16: DNS
 
+---
 
 ### Lesson 17: Configuration Management
 
+---
 
 ### Lesson 18: Application Isolation
 
+---
 
 ### Lesson 19: Cloud Infrastructure
 
+---
 
 ### Lesson 20: Contributing to Open Source
