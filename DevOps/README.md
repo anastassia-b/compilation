@@ -18,7 +18,6 @@
 * 17: Configuration Management
 * 18: Application Isolation
 * 19: Cloud Infrastructure
-* 20: Contributing to Open Source
 
 ---
 
@@ -489,22 +488,87 @@ As an example you can write all of your queries for your database. In testing yo
 
 ### Lesson 15: Dev Processes & Tools
 
+- [x] Code Analysis, Debugging, Linting
+- [x] Code Coverage
+- [x] Integrated Development Environments (IDE)
+- [x] Dependency Isolation: Virtual environments
+
+Example: Node.js: Creates a node_modules directory and tracks dependencies in package.json
+
+Development Servers: A Carbon Copy of the Production Environment(s). Development servers are used to test that your code works in a real environment, with a real server, and real data. You shouldn’t throw your code up on a production website to see if it works, so a development server is as close to the real thing as you can get.
+
+
 ---
 
 ### Lesson 16: DNS
+
 
 ---
 
 ### Lesson 17: Configuration Management
 
+Concept: Infrastructure as Code
+
+Provisioning is running your CM code that tells the server what to install and which files to write, automatically doing what you would usually do manually. This is much faster than a person doing it and is less error prone.
+
+* Install packages, configure software, start/stop services.
+* Ensure/guarantee a specific state of a machine.
+* Provide history of changes for a system.
+Repeatable way of rebuilding a system.
+* Orchestrate a cluster of services together.
+
+
+Pull Model:
+* Scales well but difficult to manage.
+* The server being provisioned (node) runs an agent (daemon) that asks a central authority (master) if/when it has any updates that it should run.
+* Requires a daemon to be installed on all machines and a central authority to be setup.
+
+Push Model:
+* Simple to manage and setup but not scalable.
+* A central server contacts the nodes and sends updates as they are needed.
+* When a change is made to the infrastructure (code) each node is alerted of this and they run the changes.
+
+
 ---
 
 ### Lesson 18: Application Isolation
+
+Application isolation is the separation of one program or application stack from the rest of the running processes. The oldest way to do this is to simply run your application on a separate computer, but that gets very expensive very quickly.
+
+There are two main ways to tackle Application Isolation on one computer: Virtual Machines and Containers. They both achieve similar end results but achieve that end in differnt ways and offer different advantages / disadvantages.
+
+#### Virtual Machines
+Virtual Machines are programs that act like (or emulate) another computer (Also called a “guest”) that’s running on your physical computer (The “host”). This is useful because a VM completely isolates programs running from the host computer.
+
+* VirtualBox, VMWare
+
+#### Containers
+Containers approach application isolation from a different angle. Instead of emulating the guest OS, containers use the same kernel as the host but lie to the guest process and tell it that it’s the only application running on that OS. Containers bypass the emulation problem by avoiding emulation altogether. They run on the same hardware as the host OS but with a thin layer of separation.
+
+Instead of emulating an entire OS (running 100+ processes), the container is told that it’s processes (sh and ps in this case) are the only one in this environment. In theory this prevents a malicious attack from inside the container from invading the host OS.
+
+* Docker, RKT
 
 ---
 
 ### Lesson 19: Cloud Infrastructure
 
----
+_--a model for enabling ubiquitous, on-demand access to a shared pool of configurable computing resources._
 
-### Lesson 20: Contributing to Open Source
+The Cloud is a vague term which more or less means “Computing resources somewhere else”. This can be remote digital storage, a virtual machine you log into from your laptop, a place to chat with friends, or a database someone else hosts. Either way its many tools acting together in a complicated ecosystem of machines, web APIs, operating systems, and hosting providers.
+
+Some of the biggest cloud providers currently are Amazon AWS, Windows Azure, and Google Cloud Platform.
+
+The reasons you would use the cloud is because you need something that either needs to scale fast, be cost effective, or will only exist for a short period of time.
+
+**Cloud + Configuration Management**
+
+Configuration Management is a very useful tool for managing lots of machines at once in the cloud. Being able to spin up hundreds of machines isn’t practical if you have to manually configure each one. Many companies use configuration management tools to provision their cloud machines automatically.
+
+Advantages:
+* **Ephemeral:** Creating and destroying machines is quick and painless. If you need to quickly spin up 100 new Linux boxes to run a test, you can do that and then delete them afterwards with a few commands.
+* **Cost Effective:** Since you only pay for the resources that you’re currently using, clouds can be very cost effective. Instead of worrying about upgrading your servers in order to handle increased load at peak hours, you can just spin up new machines as needed and only pay for the exact amount of extra capacity that you need.
+* **Low startup cost:** Initial investment is cheap, <$100 as opposed to >$1,000+ (unless you are running a private cloud). This can be especially beneficial to startups, since they don’t have to worry about spending the money and taking the time to set up costly infrastructure.
+
+Disadvantages:
+* **Central Point of Failure **
