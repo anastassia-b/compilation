@@ -1,24 +1,25 @@
 ## Topics
-##### 1: First Steps
-##### 2: Operating Systems
-##### 3: Docs & Communication
-##### 4: Shell Navigation
-##### 5: Users, Groups, Permissions
-##### 6: Files
-##### 7: Packages, Software, Libraries
-##### 8: Version Control
-##### 9: Programming
-##### 10: Frameworks
-##### 11: Testing
-##### 12: Continuous Integration
-##### 13: Security
-##### 14: Databases
-##### 15: Dev Processes & Tools
-##### 16: DNS
-##### 17: Configuration Management
-##### 18: Application Isolation
-##### 19: Cloud Infrastructure
-##### 20: Contributing to Open Source
+
+#### 1: First Steps
+#### 2: Operating Systems
+#### 3: Docs & Communication
+#### 4: Shell Navigation
+#### 5: Users, Groups, Permissions
+#### 6: Files
+#### 7: Packages, Software, Libraries
+#### 8: Version Control
+#### 9: Programming
+#### 10: Frameworks
+#### 11: Testing
+#### 12: Continuous Integration
+#### 13: Security
+#### 14: Databases
+#### 15: Dev Processes & Tools
+#### 16: DNS
+#### 17: Configuration Management
+#### 18: Application Isolation
+#### 19: Cloud Infrastructure
+#### 20: Contributing to Open Source
 
 ---
 
@@ -167,21 +168,47 @@ $ grep foo file.txt
 $ less file.txt
 # Prints environment variables to the screen.
 $ env
-# Prints out current user
-$ whoami
-# When in doubt, always type help.
-$ help
 ```
-
-Shell Scripts
-
 
 
 ### Lesson 5: Users, Groups, Permissions
 
+Users have:
+* Username
+* UID
+* Group
+* Shell
+* Usually (but not always) password
+* Usually (but not always) home directory
+
+
+**Super users**
+All users have a specific set of permissions, i.e., things they can and cannot do. The Linux super-user root is not burdened by this and so it can do pretty much whatever it wants. As a person this is important because you can become root and get things done that your user is unable to do.
+
+The way you act as root is one of two ways:
+* `su root` Is like logging in as root. Prompts you for the root user’s password.
+* `sudo <command>` runs a single command as root. Prompts you for your password, but requiresyou to be on the sudoers list.
 
 ### Lesson 6: Files
 
+The basic understanding of a file is “Some chunk of data stored on your hard drive/solid state drive/floppy disk/etc.” However, the concept of files can be extended to include more than just data. Unix and Linux systems represent nearly everything – data, processes, storage devices, sockets, and more – as files.
+
+By representing everything as files, Linux provides a consistent interface to easily access all kinds of things. This abstraction allows users to interact with data, software, and hardware alike by reading from and writing to files.
+
+File metadata:
+* `ls -alt`
+* `stat /etc/services`
+
+Many programs use files that begin with . to store configuration options. These configuration files are aptly called “dotfiles”.
+
+Can edit file metadata with:
+* `chown`: edit the owner
+* `chmod`: change read/write/execute
+* `chgrp`: change the group permission
+
+**Executing a File?:** When a file has the +x bit set it means you can invoke this as if it were a program.
+
+(Anastassia note: Ah, I've symlinked specs before. Type of file, cool.)
 
 ### Lesson 7: Packages, Software, Libraries
 
