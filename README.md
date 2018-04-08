@@ -41,6 +41,10 @@ DevOps BootCamp (DOBC) is a free course hosted by the OSU Open Source Lab. The c
 * 19: Cloud Infrastructure
 * 20: Contributing to Open Source
 
+### React
+
+Notes learning beyond basic React knowledge. Multiple [sources](https://github.com/vasanthk/react-bits/blob/master/anti-patterns/01.props-in-initial-state.md). 
+
 ### GoLang
 
 Currently learning the `Go` programming language.
